@@ -19,7 +19,7 @@
             <th>Action</th>
         </tr>
         </thead>
-        <!-- PHP код для вывода записей о самолетах из базы данных -->
+        <tbody id="planeTable">
         <?php
         // Подключение к базе данных
         $servername = "mysql";
@@ -38,7 +38,6 @@
         $sql = "SELECT * FROM planes";
         $result = $conn->query($sql);
 
-        echo "<tbody>";
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
@@ -54,10 +53,10 @@
         } else {
             echo "<tr><td colspan='4'>No planes found</td></tr>";
         }
-        echo "</tbody>";
 
         $conn->close();
         ?>
+        </tbody>
     </table>
 </div>
 
@@ -104,8 +103,10 @@
                 url: 'add-plane.php', // URL для обработки запроса
                 data: $(this).serialize(), // Сериализация данных формы
                 success: function(response) {
+                    // Очищаем таблицу перед добавлением новой строки
+                    $('#planeTable').empty();
                     // Добавление новой строки к таблице самолетов после успешного добавления
-                    $('table tbody').append(response);
+                    $('#planeTable').append(response);
                     $('#addPlaneModal').modal('hide'); // Закрытие модального окна
                 }
             });
