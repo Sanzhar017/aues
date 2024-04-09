@@ -17,7 +17,7 @@ if(isset($_GET['id'])) {
     $employeeId = $_GET['id'];
 
     // Запрос на удаление сотрудника
-    $sql = "DELETE FROM Employees WHERE id=$employeeId";
+    $sql = "DELETE FROM employees WHERE id=$employeeId";
 
     if ($conn->query($sql) === TRUE) {
         // После успешного удаления перенаправляем на страницу employees.php

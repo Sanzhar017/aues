@@ -19,7 +19,7 @@ $last_name = $_POST['lastName'];
 $position = $_POST['position'];
 
 // Обновление информации о сотруднике в таблице "Employees"
-$sql = "UPDATE Employees SET first_name='$first_name', last_name='$last_name', position='$position' WHERE id=$employee_id";
+$sql = "UPDATE employees SET first_name='$first_name', last_name='$last_name', position='$position' WHERE id=$employee_id";
 
 if ($conn->query($sql) === TRUE) {
     // После успешного обновления перенаправляем пользователя на страницу с информацией о сотруднике

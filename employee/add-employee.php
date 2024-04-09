@@ -22,7 +22,7 @@ $sql = "INSERT INTO Employees (first_name, last_name, position) VALUES ('$first_
 
 if ($conn->query($sql) === TRUE) {
     // Если вставка прошла успешно, обновляем таблицу сотрудников и отправляем ее обратно в формате HTML
-    $result = $conn->query("SELECT * FROM Employees");
+    $result = $conn->query("SELECT * FROM employees");
     echo "<tr>
             <td>$conn->insert_id</td>
             <td>$first_name</td>

@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $employee_id = $_GET['id'];
 
 // Получение информации о сотруднике по его ID
-$sql = "SELECT * FROM Employees WHERE id = $employee_id";
+$sql = "SELECT * FROM employees WHERE id = $employee_id";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
