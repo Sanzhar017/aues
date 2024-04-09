@@ -1,60 +1,49 @@
-<?php
-session_start();
-
-// Подключение к базе данных
-$servername = "mysql";
-$username = "root";
-$password = "root";
-$dbname = "aues";
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Проверка соединения
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Обработка запроса на вход
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Поиск пользователя в базе данных
-    $check_query = "SELECT * FROM authorization WHERE username='$username'";
-    $result = $conn->query($check_query);
-
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['username'] = $username;
-            echo "Вы успешно вошли в систему.";
-            // Перенаправление на страницу с управлением
-            header("Location: login.php");
-            exit();
-        } else {
-            echo "Неверное имя пользователя или пароль.";
-        }
-    } else {
-        echo "Неверное имя пользователя или пароль.";
-    }
-}
-
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
+    <!-- Подключение стилей Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Дополнительные стили для формы */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            width: 100%;
+        }
+        p {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h2>Вход</h2>
-<form action="login.php" method="post">
-    <input type="text" name="username" placeholder="Имя пользователя" required><br>
-    <input type="password" name="password" placeholder="Пароль" required><br>
-    <button type="submit" name="login">Войти</button>
-</form>
-<p>Еще не зарегистрированы? <a href="register.php">Зарегистрироваться</a></p>
+<div class="container">
+    <h2>Вход</h2>
+    <form action="login.php" method="post">
+        <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Имя пользователя" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Пароль" required>
+        </div>
+        <button type="submit" name="login" class="btn btn-primary">Войти</button>
+    </form>
+    <p>Еще не зарегистрированы? <a href="register.php">Зарегистрироваться</a></p>
+</div>
 </body>
 </html>

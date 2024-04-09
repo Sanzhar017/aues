@@ -40,14 +40,46 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
+    <!-- Подключение стилей Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Дополнительные стили для формы */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            width: 100%;
+        }
+        p {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h2>Регистрация</h2>
-<form action="register.php" method="post">
-    <input type="text" name="username" placeholder="Имя пользователя" required><br>
-    <input type="password" name="password" placeholder="Пароль" required><br>
-    <button type="submit" name="register">Зарегистрироваться</button>
-</form>
-<p>Уже зарегистрированы? <a href="login.php">Войти</a></p>
+<div class="container">
+    <h2>Регистрация</h2>
+    <form action="register.php" method="post">
+        <div class="form-group">
+            <input type="text" name="username" class="form-control" placeholder="Имя пользователя" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" class="form-control" placeholder="Пароль" required>
+        </div>
+        <button type="submit" name="register" class="btn btn-primary">Зарегистрироваться</button>
+    </form>
+    <p>Уже зарегистрированы? <a href="login.php">Войти</a></p>
+</div>
 </body>
 </html>
